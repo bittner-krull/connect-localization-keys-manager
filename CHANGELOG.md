@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/jsverse/transloco-keys-manager/compare/v8.0.0...v8.1.0) (2026-01-23)
+
+
+### Features
+
+* 🎸 allow scope in marker function ([#238](https://github.com/jsverse/transloco-keys-manager/issues/238)) ([19e5471](https://github.com/jsverse/transloco-keys-manager/commit/19e5471dfbbe81dd8f277b394ab7ba0a8aadd9dd)), closes [#132](https://github.com/jsverse/transloco-keys-manager/issues/132) [#178](https://github.com/jsverse/transloco-keys-manager/issues/178)
+
 ## [8.0.0](https://github.com/jsverse/transloco-keys-manager/compare/v7.1.0...v8.0.0) (2026-01-23)
 
 

@@ -2,6 +2,8 @@ import {
   Call,
   Interpolation,
   LiteralMap,
+  LiteralMapKey,
+  LiteralMapPropertyKey,
   parseTemplate as ngParseTemplate,
   ParseTemplateOptions,
   PropertyRead,
@@ -18,9 +20,9 @@ import {
   TmplAstIfBlockBranch,
   TmplAstNode,
   TmplAstSwitchBlock,
-  TmplAstSwitchBlockCase,
+  TmplAstSwitchBlockCaseGroup,
   TmplAstTemplate,
-  TmplAstTextAttribute
+  TmplAstTextAttribute,
 } from '@angular/compiler';
 
 import { readFile } from '../../utils/file.utils';
@@ -48,6 +50,9 @@ export function isTextAttribute(node: unknown): node is TmplAstTextAttribute {
   return node instanceof TmplAstTextAttribute;
 }
 
+export function isLiteralMapPropertyKey(key: LiteralMapKey): key is LiteralMapPropertyKey {
+  return key.kind === 'property';
+}
 
 export function isInterpolation(ast: unknown): ast is Interpolation {
   return ast instanceof Interpolation;
@@ -90,7 +95,7 @@ type BlockNode =
   | TmplAstDeferredBlockPlaceholder
   | TmplAstForLoopBlockEmpty
   | TmplAstIfBlockBranch
-  | TmplAstSwitchBlockCase
+  | TmplAstSwitchBlockCaseGroup
   | TmplAstForLoopBlock
   | TmplAstDeferredBlock
   | TmplAstIfBlock
@@ -105,7 +110,7 @@ export function isBlockWithChildren(
     node instanceof TmplAstDeferredBlockPlaceholder ||
     node instanceof TmplAstForLoopBlockEmpty ||
     node instanceof TmplAstIfBlockBranch ||
-    node instanceof TmplAstSwitchBlockCase
+    node instanceof TmplAstSwitchBlockCaseGroup
   );
 }
 
@@ -129,6 +134,12 @@ export function isTmplAstSwitchBlock(
   node: unknown,
 ): node is TmplAstSwitchBlock {
   return node instanceof TmplAstSwitchBlock;
+}
+
+export function isTmplAstSwitchBlockCaseGroup(
+  node: unknown,
+): node is TmplAstSwitchBlockCaseGroup {
+  return node instanceof TmplAstSwitchBlockCaseGroup;
 }
 
 export function isBlockNode(node: TmplAstNode): node is BlockNode {
@@ -160,7 +171,11 @@ export function resolveBlockChildNodes(node: BlockNode): TmplAstNode[] {
   }
 
   if (isTmplAstSwitchBlock(node)) {
-    return node.cases;
+    return node.groups;
+  }
+
+  if (isTmplAstSwitchBlockCaseGroup(node)) {
+    return node.children;
   }
 
   return node.children;
@@ -170,7 +185,7 @@ export function resolveKeysFromLiteralMap(node: LiteralMap): string[] {
   let keys: string[] = [];
 
   for (let i = 0; i < node.values.length; i++) {
-    const { key } = node.keys[i];
+    const { key } = node.keys.filter(isLiteralMapPropertyKey)[i];
     const value = node.values[i];
 
     if (isLiteralMap(value)) {

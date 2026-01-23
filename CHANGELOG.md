@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/jsverse/transloco-keys-manager/compare/v7.1.0...v8.0.0) (2026-01-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* 🧨 Minimum Angular version is 21.1
+
+### Features
+
+* 🎸 Support angular 21.1 ([#247](https://github.com/jsverse/transloco-keys-manager/issues/247)) ([772f7dc](https://github.com/jsverse/transloco-keys-manager/commit/772f7dca4e2a515de2b38b670db154ccb9a47cd2))
+* add ${sourceRoot} variable interpolation for NX workspaces ([#244](https://github.com/jsverse/transloco-keys-manager/issues/244)) ([257b91c](https://github.com/jsverse/transloco-keys-manager/commit/257b91c543b2f168e4072004259c31047f53172c)), closes [#220](https://github.com/jsverse/transloco-keys-manager/issues/220)
+
 ## [7.1.0](https://github.com/jsverse/transloco-keys-manager/compare/v7.0.2...v7.1.0) (2025-12-02)
 
 

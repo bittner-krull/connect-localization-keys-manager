@@ -16,26 +16,18 @@ import { resolveScopeAlias } from '../utils/resolvers.utils';
 
 import { inlineTemplateExtractor } from './inline-template';
 import { markerExtractor } from './marker.extractor';
-import { pureFunctionExtractor } from './pure-function.extractor';
-import { serviceExtractor } from './service.extractor';
-import { signalExtractor } from './signal.extractor';
 
 export function extractTSKeys(config: Config): ExtractionResult {
   return extractKeys(config, 'ts', TSExtractor);
 }
 
-const translocoImport = /@(jsverse|ngneat)\/transloco/;
-const translocoKeysManagerImport = /@(jsverse|ngneat)\/transloco-keys-manager/;
+const localizationKeysManagerImport = /@bittner-krull\/localization-keys-manager/;
 function TSExtractor(config: ExtractorConfig): ScopeMap {
   const { file, scopes, defaultValue, scopeToKeys } = config;
   const content = readFile(file);
   const extractors = [];
 
-  if (translocoImport.test(content)) {
-    extractors.push(serviceExtractor, pureFunctionExtractor, signalExtractor);
-  }
-
-  if (translocoKeysManagerImport.test(content)) {
+  if (localizationKeysManagerImport.test(content)) {
     extractors.push(markerExtractor);
   }
 

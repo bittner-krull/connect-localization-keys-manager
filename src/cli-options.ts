@@ -8,7 +8,7 @@ export const optionDefinitions = [
     name: 'config',
     alias: 'c',
     type: String,
-    description: 'Path to a custom transloco config',
+    description: 'Path to a custom config',
   },
   {
     name: 'input',
@@ -105,8 +105,8 @@ export const sections = [
   {
     header: 'Actions',
     content: [
-      '$ transloco-keys-manager extract',
-      '$ transloco-keys-manager find',
+      '$ localization-keys-manager extract',
+      '$ localization-keys-manager find',
     ],
   },
   {

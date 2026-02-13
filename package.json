@@ -1,7 +1,7 @@
 {
-  "name": "@jsverse/transloco-keys-manager",
-  "version": "8.1.0",
-  "description": "Extract translatable keys from projects that uses Transloco",
+  "name": "@bittner-krull/localization-keys-manager",
+  "version": "21.1.0",
+  "description": "Extract translatable keys from projects that use bittner-krull's localisation handling",
   "engines": {
     "node": ">=20.19.0"
   },
@@ -10,14 +10,10 @@
     ".": {
       "import": "./public-api.js",
       "types": "./public-api.d.ts"
-    },
-    "./marker": {
-      "import": "./marker.js",
-      "types": "./marker.d.ts"
     }
   },
   "bin": {
-    "transloco-keys-manager": "index.js"
+    "localization-keys-manager": "index.js"
   },
   "scripts": {
     "release": "standard-version --infile ./CHANGELOG.md",
@@ -39,25 +35,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsverse/transloco-keys-manager.git"
+    "url": "git+https://github.com/bittner-krull/connect-localization-keys-manager.git"
   },
   "keywords": [
     "angular",
-    "angular 2",
     "i18n",
     "extract",
-    "transloco",
+    "localization",
+    "localisation",
     "translate",
     "keys",
     "tool",
-    "cli",
-    "webpack"
+    "cli"
   ],
-  "author": "Shahar Kazaz",
+  "author": "Someone only we know!",
   "bugs": {
-    "url": "https://github.com/jsverse/transloco-keys-manager/issues"
+    "url": "https://github.com/bittner-krull/connect-localization-keys-manager/issues"
   },
-  "homepage": "https://jsverse.gitbook.io/transloco/tools/keys-manager-tkm",
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
